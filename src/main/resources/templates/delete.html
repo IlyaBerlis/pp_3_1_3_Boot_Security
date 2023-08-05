@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Delete User</title>
+</head>
+<body>
+<a th:href="@{/logout}">Logout</a>
+<h1>Delete User</h1>
+<p>Вы действительно хотите удалить пользователя с идентификатором <strong th:text="${user.userId}">UserId</strong>?</p>
+<form method="POST" action="@{/delete/${user.userId}}">
+  <input type="submit" class="buttonDelete" value="Delete"/>
+</form>
+</body>
+</html>
