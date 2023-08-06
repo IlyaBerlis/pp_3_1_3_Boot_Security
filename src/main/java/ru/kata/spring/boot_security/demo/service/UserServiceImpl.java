@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
 
@@ -43,10 +43,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User getUserByName(String username) {
         return userRepository.findByName(username);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return getUserByName(username);
     }
 }
