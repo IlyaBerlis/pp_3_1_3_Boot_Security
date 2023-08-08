@@ -35,7 +35,7 @@ public class User implements UserDetails {
     @Column(name = "username")
     private String username;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -109,9 +109,17 @@ public class User implements UserDetails {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -155,5 +163,16 @@ public class User implements UserDetails {
     public void removeRole(Role role){
         roles.remove(role);
         role.getUsers().remove(this);
+    }
+
+    public void updateFields(User updatedUser) {
+        this.name = updatedUser.getName();
+        this.surname = updatedUser.getSurname();
+        this.age = updatedUser.getAge();
+        this.sex = updatedUser.getSex();
+
+        if (!updatedUser.getPassword().isEmpty()) {
+            this.password = updatedUser.getPassword();
+        }
     }
 }
